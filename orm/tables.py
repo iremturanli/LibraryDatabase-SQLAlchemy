@@ -51,8 +51,8 @@ class Log(Base):
     OldVersion=Column(String)
     NewVersion=Column(String)
 
-    def __init__(self,Info,Name,OldVersion,NewVersion):
-        # self.Library_id=Library_id
+    def __init__(self,Library_id,Info,Name,OldVersion,NewVersion):
+        self.Library_id=Library_id
         self.Date=datetime.datetime.now().strftime(("%Y-%m-%d %H:%M:%S"))
         self.Info=Info
         self.Name=Name
