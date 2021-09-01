@@ -13,7 +13,7 @@ Session.configure(bind=engine)
 session=Session()
 Base=declarative_base()
 
-class Library(Base):
+class Library(Base): 
 
     __tablename__='library'
     BookID=Column(Integer,primary_key=True)
@@ -58,7 +58,7 @@ class Log(Base):
         self.Name=Name
         self.OldVersion=OldVersion
         self.NewVersion=NewVersion
-        # self.Library_id=Library_id
+       
 
 
     def addClass(self):

@@ -7,10 +7,10 @@ from orm.tables import session
 
 
 def add(BookName,Yearofpublication,AuthorName,Category,Addp):
-    id=input("Please enter book id: ")
+
     l1=Library(BookName,Yearofpublication,AuthorName,Category,Addp)
     l1.addClass()
-    lg=Log(Library_id=id,Info='Book added',Name=Addp,OldVersion=None,NewVersion=BookName)
+    lg=Log(Library_id=l1.BookID,Info='Book added',Name=Addp,OldVersion=None,NewVersion=BookName)
     lg.addClass()
     
 
@@ -21,7 +21,7 @@ def delete(key):
     session.query(Library).filter(Library.BookID==key).delete()
     session.commit()
     lg=Log(Library_id=key,Info='Book Deleted',Name=Person,OldVersion=None,NewVersion=None)
-    Log.addClass(lg)
+    lg.addClass()
   
 
 
@@ -37,6 +37,7 @@ def update(key):
                      Update category: 4
                      Update Person: 5
                      Update all : 6
+                     
                    '''))
 
     if question==1:
@@ -51,7 +52,7 @@ def update(key):
 
 
         lg=Log(Library_id=key,Info='Book updated',Name=Person,OldVersion=temp,NewVersion=a)
-        lg.addClass()#böyle de çağırabiliyorum**
+        lg.addClass()
         
     
     elif question==2:
@@ -66,6 +67,7 @@ def update(key):
 
         lg=Log(Library_id=key,Info='Book updated',Name=Person,OldVersion=temp,NewVersion=b)
         Log.addClass(lg)#böyle de çağırabiliyorum**
+        temp=veri.BookName
         
 
     elif question==3:
@@ -111,7 +113,7 @@ def update(key):
 
 
     elif question==6:
-        #old
+       
         veri=session.query(Library).filter(Library.BookID==key).one()
         temp=veri.BookName
         temp1=veri.Yearofpublication
